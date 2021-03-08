@@ -7,7 +7,6 @@ import {
   Ctx,
   ObjectType,
   Query,
-  Args,
 } from "type-graphql";
 import argon2 from "argon2";
 import { User } from "../entitites/User";
@@ -41,7 +40,8 @@ export class UserResolver {
   async changePassword(
     @Arg("token") token: string,
     @Arg("newPassword") newPassword: string,
-    @Ctx() { em, redis, req }: MyContext
+    @Ctx()
+    { em, redis }: MyContext
   ): Promise<UserResponse> {
     if (newPassword.length <= 3) {
       return {
@@ -86,6 +86,7 @@ export class UserResolver {
     redis.del(key);
 
     // the below line auto logs in user after password change
+    // add req to Ctx object above to enable this behavior
     // req.session.userId = user.id;
 
     return { user };

@@ -13,10 +13,8 @@ import session from "express-session";
 import connectRedis from "connect-redis";
 import { MyContext } from "./types";
 import cors from "cors";
-import { sendEmail } from "./utils/sendEmail";
 
 const main = async () => {
-  // sendEmail("bob@gmail.com", "hello world");
   const orm = await MikroORM.init(microConfig);
   await orm.getMigrator().up();
 
