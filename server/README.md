@@ -10,4 +10,4 @@ The commands for these are:
 
 - 1: npm run dev
 - 2: npm run watch
-- 3: redis-server
+- 3: redis-server (if it says "already in use," try `$ redis-cli shutdown` and then retry)
